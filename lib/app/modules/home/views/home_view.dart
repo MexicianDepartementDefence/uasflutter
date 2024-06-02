@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:uas_flutter_absen/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -13,11 +14,17 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        children: [
+          const Center(
+            child: Text(
+              'HomeView is working',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          ElevatedButton(
+              onPressed: () => Get.toNamed(Routes.LOGIN), child: Text('login')),
+        ],
       ),
     );
   }
