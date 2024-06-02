@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "105167511878",
+    "project_id": "uas-smt2-flutter",
+    "storage_bucket": "uas-smt2-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105167511878:android:baa1283cb10169367fc547",
+        "android_client_info": {
+          "package_name": "com.smkmq.ujian.uas_flutter_absen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7Vr4D506iMUkQ6Rzj1Y1rEtLRTnd7pSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
