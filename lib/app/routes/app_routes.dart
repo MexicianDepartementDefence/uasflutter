@@ -10,7 +10,8 @@ abstract class Routes {
   static const REGISTER = _Paths.REGISTER;
 
   static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
-
+  static const CRUD_JADWAL = _Paths.CRUD_JADWAL;
+  static const TAMBAH_JADWAL = _Paths.TAMBAH_JADWAL;
 }
 
 abstract class _Paths {
@@ -20,5 +21,6 @@ abstract class _Paths {
   static const REGISTER = '/register';
 
   static const FORGOTPASSWORD = '/forgotpassword';
-
+  static const CRUD_JADWAL = '/crud-jadwal';
+  static const TAMBAH_JADWAL = '/tambah-jadwal';
 }

@@ -1,7 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
-class ForgotPasswordView extends GetView<ForgotPasswordView> {
+import 'package:flutter/material.dart';
+import 'package:uas_flutter_absen/app/modules/forgotpassword/controllers/forgotpassword_controller.dart';
+import 'package:get/get.dart';
+import 'package:uas_flutter_absen/app/controllers/auth_controller.dart';
+
+class ForgotPasswordView extends GetView<ForgotpasswordController> {
+  final srt = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +22,6 @@ class ForgotPasswordView extends GetView<ForgotPasswordView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 60),
-            Image.asset(
-              'assets/logo.png', // Add your logo asset here
-              height: 100,
-            ),
             SizedBox(height: 20),
             Text(
               'Silk Road',
@@ -52,6 +52,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordView> {
             ),
             SizedBox(height: 30),
             TextField(
+              controller: controller.emailAddress,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[800],
@@ -62,13 +63,14 @@ class ForgotPasswordView extends GetView<ForgotPasswordView> {
                   borderSide: BorderSide.none,
                 ),
               ),
+              onSubmitted: (value) {
+                () => srt.resetpass(controller.emailAddress.text);
+              },
               style: TextStyle(color: Colors.white),
             ),
             SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () {
-                // Implement reset password logic
-              },
+              onPressed: () => srt.resetpass(controller.emailAddress.text),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFFFA500),
                 padding: EdgeInsets.symmetric(vertical: 14.0),

@@ -1,13 +1,19 @@
 import 'package:get/get.dart';
-import 'package:uas_flutter_absen/app/modules/forgotpassword/bindings/forgotpassword_binding.dart';
-import 'package:uas_flutter_absen/app/modules/forgotpassword/views/forgotpassword_view.dart';
-import 'package:uas_flutter_absen/app/modules/login/bindings/login_binding.dart';
-import 'package:uas_flutter_absen/app/modules/login/views/login_view.dart';
-import 'package:uas_flutter_absen/app/modules/register/bindings/register_binding.dart';
-import 'package:uas_flutter_absen/app/modules/register/views/register_view.dart';
 
+import '../modules/crud_jadwal/bindings/crud_jadwal_binding.dart';
+import '../modules/crud_jadwal/views/crud_jadwal_view.dart';
+import '../modules/forgotpassword/bindings/forgotpassword_binding.dart';
+import '../modules/forgotpassword/views/forgotpassword_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
+import '../modules/register/bindings/register_binding.dart';
+import '../modules/register/views/register_view.dart';
+import '../modules/tambah-jadwal/bindings/tambah_jadwal_binding.dart';
+import '../modules/tambah-jadwal/views/tambah_jadwal_view.dart';
+
+// ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
 
@@ -36,6 +42,16 @@ class AppPages {
       name: _Paths.FORGOTPASSWORD,
       page: () => ForgotPasswordView(),
       binding: ForgotpasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.CRUD_JADWAL,
+      page: () => CrudJadwalView(),
+      binding: CrudJadwalBinding(),
+    ),
+    GetPage(
+      name: _Paths.TAMBAH_JADWAL,
+      page: () => const TambahJadwalView(),
+      binding: TambahJadwalBinding(),
     ),
   ];
 }

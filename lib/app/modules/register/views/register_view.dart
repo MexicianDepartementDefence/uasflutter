@@ -1,8 +1,12 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, library_private_types_in_public_api, unused_import
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uas_flutter_absen/app/controllers/auth_controller.dart';
 import 'package:uas_flutter_absen/app/routes/app_pages.dart';
 import '../controllers/register_controller.dart';
 
+// ignore: use_key_in_widget_constructors
 class RegisterView extends StatefulWidget {
   @override
   _RegisterViewState createState() => _RegisterViewState();
@@ -10,6 +14,11 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   bool _isPasswordVisible = false;
+  bool _isPasswordVisible2 = false;
+
+  final srt = Get.put(AuthController());
+
+  final register = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +29,6 @@ class _RegisterViewState extends State<RegisterView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 60),
-            Image.asset(
-              'assets/logo.png', // Add your logo asset here
-              height: 100,
-            ),
             SizedBox(height: 20),
             Text(
               'Silk Road',
@@ -54,20 +58,7 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             SizedBox(height: 30),
             TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[800],
-                hintText: 'Full Name',
-                hintStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              style: TextStyle(color: Colors.white),
-            ),
-            SizedBox(height: 20),
-            TextField(
+              controller: register.email,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[800],
@@ -82,11 +73,13 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             SizedBox(height: 20),
             TextField(
-              obscureText: !_isPasswordVisible,
+              controller: register.password,
+              obscureText: _isPasswordVisible,
               decoration: InputDecoration(
+                
                 filled: true,
                 fillColor: Colors.grey[800],
-                hintText: 'Your Password',
+                hintText: 'Password',
                 hintStyle: TextStyle(color: Colors.grey),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
@@ -108,9 +101,38 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               style: TextStyle(color: Colors.white),
             ),
+            SizedBox(height: 20),
+            TextField(
+              controller: register.confirmpassword,
+              obscureText: !_isPasswordVisible2,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.grey[800],
+                hintText: 'Confirm Password',
+                hintStyle: TextStyle(color: Colors.grey),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide.none,
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible2 = !_isPasswordVisible2;
+                    });
+                  },
+                ),
+              ),
+              style: TextStyle(color: Colors.white),
+            ),
             SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => srt.register(register.email.text, register.password.text, register.confirmpassword.text),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFFFA500),
                 padding: EdgeInsets.symmetric(vertical: 14.0),
@@ -186,7 +208,6 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             ),
           ],
-
         ),
       ),
     );
