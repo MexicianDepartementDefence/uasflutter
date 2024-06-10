@@ -7,7 +7,6 @@ import 'package:uas_flutter_absen/app/modules/crud_jadwal/model/modelcrud.dart';
 class CrudJadwalController extends GetxController {
   FirebaseFirestore fs = FirebaseFirestore.instance;
 
-
   RxBool status = false.obs;
 
   List<JadwalAbsen> data = [];
@@ -20,6 +19,7 @@ class CrudJadwalController extends GetxController {
       jadwal.docs.map((e) {
         print(e.data());
         JadwalAbsen listjadwal = JadwalAbsen.fromJson(Map.from(e.data()), e.id);
+        print(e);
       }).toList();
 
       status.value = true;

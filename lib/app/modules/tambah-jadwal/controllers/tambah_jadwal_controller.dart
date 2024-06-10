@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:uas_flutter_absen/app/routes/app_pages.dart';
 
@@ -14,6 +15,8 @@ class TambahJadwalController extends GetxController {
     if (args.value is DateTime) {
       tanggaljadwal.value = args.value;
     }
+
+    
   }
 
   TextEditingController jamMasuk = TextEditingController();
