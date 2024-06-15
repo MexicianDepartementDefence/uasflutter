@@ -27,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 SizedBox(height: 60),
                 Text(
-                  'Silk Road',
+                  'Online Absence',
                   style: TextStyle(
                     color: Color(0xFFFFA500),
                     fontSize: 24,

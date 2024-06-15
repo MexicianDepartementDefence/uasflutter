@@ -18,6 +18,7 @@ void main() async {
   );
 }
 
+
 class MyApp extends StatelessWidget {
   final auth = Get.put(AuthController());
   @override
