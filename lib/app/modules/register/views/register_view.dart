@@ -76,7 +76,6 @@ class _RegisterViewState extends State<RegisterView> {
               controller: register.password,
               obscureText: _isPasswordVisible,
               decoration: InputDecoration(
-                
                 filled: true,
                 fillColor: Colors.grey[800],
                 hintText: 'Password',
@@ -132,7 +131,8 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             SizedBox(height: 30),
             ElevatedButton(
-              onPressed: () => srt.register(register.email.text, register.password.text, register.confirmpassword.text),
+              onPressed: () => srt.register(register.email.text,
+                  register.password.text, register.confirmpassword.text),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFFFFA500),
                 padding: EdgeInsets.symmetric(vertical: 14.0),
@@ -142,7 +142,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               child: Center(
                 child: Text(
-                  'Sign In',
+                  'Sign Up',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
