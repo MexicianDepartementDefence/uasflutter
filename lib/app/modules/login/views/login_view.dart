@@ -103,6 +103,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 SizedBox(height: 20),
+
                 ElevatedButton(
                   onPressed: () => srt.login(controller.email.text, controller.password.text),
                   style: ElevatedButton.styleFrom(
@@ -142,8 +143,11 @@ class _LoginViewState extends State<LoginView> {
                   ],
                 ),
                 SizedBox(height: 20),
-                OutlinedButton.icon(
-                  onPressed: () {},
+                                Row(
+mainAxisAlignment: MainAxisAlignment.center,
+children: [
+OutlinedButton.icon(
+                  onPressed: () => srt.signInWithGoogle(),
                   icon: Icon(Icons.g_mobiledata, color: Colors.white),
                   label: Text('Login with Google',
                       style: TextStyle(color: Colors.white)),
@@ -151,13 +155,13 @@ class _LoginViewState extends State<LoginView> {
                     side: BorderSide(color: Color(0xFFFFA500)),
                     padding: EdgeInsets.symmetric(
                         vertical:
-                            20.0), // Adjusted to match the height of the email box
+                            20.0, horizontal: 20), // Adjusted to match the height of the email box
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(width: 10),
                 OutlinedButton.icon(
                   onPressed: () {},
                   icon: Icon(Icons.facebook, color: Colors.white),
@@ -167,11 +171,13 @@ class _LoginViewState extends State<LoginView> {
                     side: BorderSide(color: Color(0xFFFFA500)),
                     padding: EdgeInsets.symmetric(
                         vertical:
-                            20.0), // Adjusted to match the height of the email box
+                            20.0, horizontal: 20), // Adjusted to match the height of the email box
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
+                ),
+],
                 ),
                 SizedBox(height: 30),
                 TextButton(

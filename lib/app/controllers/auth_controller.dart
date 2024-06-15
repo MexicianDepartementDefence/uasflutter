@@ -1,10 +1,9 @@
 // ignore_for_file: unnecessary_overrides, unused_import, unused_local_variable, avoid_web_libraries_in_flutter, unrelated_type_equality_checks, avoid_print, unused_catch_clause
 
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:uas_flutter_absen/app/routes/app_pages.dart';
 
 class AuthController extends GetxController {
@@ -12,6 +11,8 @@ class AuthController extends GetxController {
   final count = 0.obs;
   FirebaseFirestore rs = FirebaseFirestore.instance;
   FirebaseAuth rm = FirebaseAuth.instance;
+
+  Rx<User?> userFirebase = Rx<User?>(null);
 
   // Future<void> login(String emailAddress, String password) async {
   //   try {
@@ -67,7 +68,10 @@ class AuthController extends GetxController {
   //   }
   // }
 
-  login(String email, String password,) async {
+  login(
+    String email,
+    String password,
+  ) async {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
@@ -86,12 +90,11 @@ class AuthController extends GetxController {
         Get.offAllNamed(Routes.HOME);
       }
     } on FirebaseAuthException catch (e) {
-       Get.defaultDialog(middleText: "Gagal Login", title: "Error");
+      Get.defaultDialog(middleText: "Gagal Login", title: "Error");
     } catch (e) {
       print(e);
     }
   }
-  
 
 //   Future<void> login(String email, String password) async {
 //     try {
@@ -140,13 +143,45 @@ class AuthController extends GetxController {
       Get.defaultDialog(middleText: "Berhasil Register, Silahkan Masuk");
       Get.offAllNamed(Routes.LOGIN);
     } catch (e) {
-      Get.defaultDialog(middleText: "Gagal Register");
+      Get.defaultDialog(middleText: "Gagal Register: $e");
+    }
+  }
+
+  signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      Get.offAllNamed(Routes.HOME);
+    } catch (e) {
+      try {
+        GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+        googleProvider
+            .addScope('https://www.googleapis.com/auth/contacts.readonly');
+        googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+
+        // Once signed in, the UserCredential
+        await FirebaseAuth.instance.signInWithPopup(googleProvider);
+        Get.offAllNamed(Routes.HOME);
+      } catch (e) {
+        Get.defaultDialog(middleText: "gagal login google", title: 'error');
+      }
     }
   }
 
   @override
   void onInit() {
     super.onInit();
+    userFirebase.bindStream(rm.authStateChanges());
   }
 
   @override

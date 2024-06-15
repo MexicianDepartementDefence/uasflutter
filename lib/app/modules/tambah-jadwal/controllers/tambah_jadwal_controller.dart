@@ -16,9 +16,10 @@ class TambahJadwalController extends GetxController {
       tanggaljadwal.value = args.value;
     }
 
-    
+
   }
 
+  
   TextEditingController jamMasuk = TextEditingController();
 
   TextEditingController jamKeluar = TextEditingController();
@@ -27,7 +28,7 @@ class TambahJadwalController extends GetxController {
 
   FirebaseFirestore rs = FirebaseFirestore.instance;
 
-   tambahJadwal() async {
+  tambahJadwal() async {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       Get.defaultDialog(middleText: "User not authenticated");
@@ -35,20 +36,23 @@ class TambahJadwalController extends GetxController {
     }
 
     final dataJadwal = {
-      "tanggal_jadwal": tanggaljadwal.value,
-      "jamMasuk": jamMasuk.text,
-      "jamKeluar": jamKeluar.text,
+      "tanggal_jadwal": DateFormat('dd-MM-yyyy').format(tanggaljadwal.value),
+      "jam_masuk": jamMasuk.text,
+      "jam_keluar": jamKeluar.text,
       "hari": hari.text,
-      "status" : false,
+      "status": false,
       "user_id": user.uid,
     };
+
+    
 
     try {
       await rs.collection("jadwal").add(dataJadwal).then((value) {
         Get.defaultDialog(
           middleText: "Berhasil Menambahkan Jadwal",
           confirm: ElevatedButton(
-            onPressed: () => Get.offAllNamed(Routes.CRUD_JADWAL), // Use your actual route here
+            onPressed: () => Get.offAllNamed(
+                Routes.CRUD_JADWAL), // Use your actual route here
             child: Center(
               child: Text(
                 "Kembali",
@@ -70,9 +74,6 @@ class TambahJadwalController extends GetxController {
 
   @override
   void onClose() {
-    jamMasuk.dispose();
-    jamKeluar.dispose();
-    hari.dispose();
     super.onClose();
   }
 }
