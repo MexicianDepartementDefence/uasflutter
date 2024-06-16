@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, unused_element, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uas_flutter_absen/app/controllers/auth_controller.dart';
+import 'package:uas_flutter_absen/app/routes/app_pages.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,16 +33,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
- 
-
- 
+  final srt = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff1C1C1C),
-        elevation: 0,
         title: const Text('Home'),
         centerTitle: true,
       ),
@@ -55,8 +54,8 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage(
-                        'assets/profile.jpg'), // Add your profile image asset
+                    backgroundImage: NetworkImage(
+                        "https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"), // Add your profile image asset
                   ),
                   SizedBox(width: 10),
                   Column(
@@ -115,7 +114,7 @@ class _HomeViewState extends State<HomeView> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => Get.toNamed(Routes.QR_SCAN),
                             child: Text('Work time'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -238,6 +237,20 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => srt.logout(),
+                child: Center(
+                  child: Text(
+                    "Log Out",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Color(0xffFFA500)),
               ),
             ],
           ),

@@ -82,7 +82,8 @@ class AuthController extends GetxController {
 
       List<String> adminEmails = [
         'faisal216093@gmail.com',
-        'faisalsmk234@gmail.com'
+        'faisalsmk234@gmail.com',
+        'alfaruky67@ggmail.com'
       ];
       if (adminEmails.contains(email)) {
         Get.offAllNamed(Routes.CRUD_JADWAL);

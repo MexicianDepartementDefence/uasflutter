@@ -170,6 +170,26 @@ class CrudJadwalView extends GetView<CrudJadwalController> {
                                 ),
                                 style: ElevatedButton.styleFrom(backgroundColor: Color(0xffFFA500)),
                                 ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 10),
+                            width: 75,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10)),
+                            child: ElevatedButton(
+                                onPressed: () => Get.toNamed(Routes.UPDATE_JADWAL, arguments: dt),
+                                child: Center(
+                                  child: Text(
+                                    "Update",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(backgroundColor: Color(0xffFFA500)),
+                                ),
                           )
                         ],
                       ),
@@ -250,7 +270,7 @@ class CrudJadwalView extends GetView<CrudJadwalController> {
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: TextButton(
-                  onPressed: () => Get.toNamed(Routes.QR_SCAN),
+                  onPressed: () => Get.toNamed(Routes.DETAIL_ABSEN),
                   child: ListTile(
                     leading: Icon(
                       Icons.man_2_outlined,

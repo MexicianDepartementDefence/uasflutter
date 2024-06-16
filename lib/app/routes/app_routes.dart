@@ -14,6 +14,7 @@ abstract class Routes {
   static const TAMBAH_JADWAL = _Paths.TAMBAH_JADWAL;
   static const DETAIL_ABSEN = _Paths.DETAIL_ABSEN;
   static const QR_SCAN = _Paths.QR_SCAN;
+  static const UPDATE_JADWAL = _Paths.UPDATE_JADWAL;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const TAMBAH_JADWAL = '/tambah-jadwal';
   static const DETAIL_ABSEN = '/detail-absen';
   static const QR_SCAN = '/qr-scan';
+  static const UPDATE_JADWAL = '/update-jadwal';
 }

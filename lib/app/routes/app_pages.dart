@@ -16,6 +16,8 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/tambah-jadwal/bindings/tambah_jadwal_binding.dart';
 import '../modules/tambah-jadwal/views/tambah_jadwal_view.dart';
+import '../modules/update_jadwal/bindings/update_jadwal_binding.dart';
+import '../modules/update_jadwal/views/update_jadwal_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -66,6 +68,11 @@ class AppPages {
       name: _Paths.QR_SCAN,
       page: () => QrScanView(),
       binding: QrScanBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATE_JADWAL,
+      page: () => const UpdateJadwalView(),
+      binding: UpdateJadwalBinding(),
     ),
   ];
 }
